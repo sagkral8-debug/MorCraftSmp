@@ -30,7 +30,7 @@ import java.util.UUID;
 public final class MorMagaza extends JavaPlugin implements Listener {
     private Economy economy;
     private LuckPerms luckPerms;
-    private final String title = ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "MORCRAFT • RÜTBE MAĞAZASI";
+    private final String title = ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "MORCRAFT • RÜTBE AL";
     private final String[] ranks = {"vip", "vipplus", "mvp"};
     private final String[] displayNames = {"VIP", "VIP+", "MVP"};
     private final int[] prices = {30000, 60000, 100000};
@@ -38,7 +38,6 @@ public final class MorMagaza extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
         RegisteredServiceProvider<Economy> registration =
                 getServer().getServicesManager().getRegistration(Economy.class);
         if (registration == null) {
@@ -55,7 +54,7 @@ public final class MorMagaza extends JavaPlugin implements Listener {
             return;
         }
         getServer().getPluginManager().registerEvents(this, this);
-        getLogger().info("MorMagaza etkin. /magaza");
+        getLogger().info("MorMagaza etkin. /rutbe-al");
     }
 
     @Override
@@ -68,7 +67,13 @@ public final class MorMagaza extends JavaPlugin implements Listener {
             player.sendMessage(ChatColor.RED + "Bu mağazayı kullanma iznin yok.");
             return true;
         }
-        openShop(player);
+        try {
+            openShop(player);
+        } catch (Exception ex) {
+            getLogger().severe(" /rutbe-al komutunda hata: " + ex.getMessage());
+            ex.printStackTrace();
+            player.sendMessage(ChatColor.RED + "Rütbe menüsü açılırken hata oluştu. Konsolu kontrol edin.");
+        }
         return true;
     }
 
