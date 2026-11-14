@@ -4,9 +4,9 @@ main: net.morcraft.magaza.MorMagaza
 api-version: '1.21'
 depend: [Vault, LuckPerms]
 commands:
-  magaza:
-    description: MorCraft rütbe mağazasını açar
-    usage: /magaza
+  rutbe-al:
+    description: VIP, VIP+ ve MVP rütbelerini satın alma menüsünü açar
+    usage: /rutbe-al
 permissions:
   mormagaza.use:
     description: MorCraft rütbe mağazasını kullanabilir
