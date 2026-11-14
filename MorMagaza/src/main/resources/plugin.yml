@@ -1,0 +1,13 @@
+name: MorMagaza
+version: 1.0.0
+main: net.morcraft.magaza.MorMagaza
+api-version: '1.21'
+depend: [Vault, LuckPerms]
+commands:
+  magaza:
+    description: MorCraft rütbe mağazasını açar
+    usage: /magaza
+permissions:
+  mormagaza.use:
+    description: MorCraft rütbe mağazasını kullanabilir
+    default: true
