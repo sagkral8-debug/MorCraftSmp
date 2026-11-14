@@ -1,0 +1,35 @@
+name: Build MorMagaza
+on:
+  push:
+    paths:
+      - 'MorMagaza/**'
+      - '.github/workflows/build-mormagaza.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14'
+      - name: Build plugin
+        run: gradle -p MorMagaza clean build
+      - name: Upload plugin JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: MorMagaza
+          path: MorMagaza/build/libs/MorMagaza-1.0.0.jar
+          if-no-files-found: error
+          retention-days: 14
